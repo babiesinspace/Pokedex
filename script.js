@@ -57,7 +57,16 @@ let raichu = {}
 let jolteon = {}
 let mySlaves = []
 
-catchPokemon("4").done(function(result){charmander = result; mySlaves.push(charmander)}).done(catchPokemon("26").done(function(result){raichu = result; mySlaves.push(raichu)})).done(catchPokemon("135").done(function(result){jolteon = result; mySlaves.push(jolteon)}))
+catchPokemon("4").done(function(result){
+  charmander = result; 
+  mySlaves.push(charmander)
+}).done(catchPokemon("26").done(function(result){
+  raichu = result; 
+  mySlaves.push(raichu)
+})).done(catchPokemon("135").done(function(result){
+  jolteon = result; 
+  mySlaves.push(jolteon)
+}))
 
 // console.log(mySlaves)
 
