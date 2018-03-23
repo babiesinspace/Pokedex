@@ -11,6 +11,19 @@ class Pokemon {
   }
 }
 
+class ImperialistOppressor {
+  constructor(name, minions){
+    this.name = name
+    this.minions = minions || []
+  }
+  all(){
+    return this.minions
+  }
+  get(pokemon){
+    return this.minions.filter(function(monster){return monster.name === pokemon})
+  }
+}
+
 let pokeHash = {
   name: "",
   image: "",
@@ -56,6 +69,7 @@ let charmander = {}
 let raichu = {}
 let jolteon = {}
 let mySlaves = []
+let despot = undefined
 
 catchPokemon("4").done(function(result){
   charmander = result; 
@@ -66,7 +80,7 @@ catchPokemon("4").done(function(result){
 })).done(catchPokemon("135").done(function(result){
   jolteon = result; 
   mySlaves.push(jolteon)
-}))
+})).done(function(result){despot = new ImperialistOppressor("Despot", mySlaves)}).done(function(result){alert("Loaded")})
 
 // console.log(mySlaves)
 
