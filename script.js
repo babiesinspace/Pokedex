@@ -13,7 +13,7 @@ class Pokemon {
 }
 
 //trainer constructor take a name and an array of pokemon objects
-class ImperialistOppressor {
+class Trainer {
   constructor(name, minions){
     this.name = name
     this.minions = minions || []
@@ -83,23 +83,24 @@ function setStats(statistic) {
 let charmander = {}
 let raichu = {}
 let jolteon = {}
-let mySlaves = []
+let pokeArray = []
 let despot = undefined
 
 //each function call will create a new pokemon. must use the .done() callback in order to only push the pokemon into the slave array once the ajax call has completed and the pokemon has been initialized (then the next pokemon, and the next)
 catchPokemon("4").done(function(result){
   charmander = result; 
-  mySlaves.push(charmander)
+  pokeArray.push(charmander)
 }).done(catchPokemon("26").done(function(result){
   raichu = result; 
-  mySlaves.push(raichu)
+  pokeArray.push(raichu)
 })).done(catchPokemon("135").done(function(result){
   jolteon = result; 
-  mySlaves.push(jolteon)
+  pokeArray.push(jolteon)
 })).done(function(result){
   //once you have all of your pokemon, you can initialize a new trainer with your pokemon array
-  despot = new ImperialistOppressor("Despot", mySlaves)
-}).done(function(result){alert("Loaded")})
+  despot = new Trainer("Despot", pokeArray)
+})
+// .done(function(result){alert("Loaded")})
 
 //My Pokemon:
 //Charmander #5
