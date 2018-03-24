@@ -26,7 +26,8 @@ class Trainer {
 
   //takes a string (pokemon name) and returns the data about that dude
   get(pokemon){
-    return this.minions.filter(function(monster){return monster.name === pokemon})
+    let collection = this.minions.filter(function(monster){return monster.name === pokemon})
+    return collection.length === 1 ? collection[0] : collection
   }
 }
 
@@ -63,7 +64,7 @@ function catchPokemon(pokeNameOrIdNumber){
       let pokemon = new Pokemon(pokeHash)
       console.log(pokemon)
       //return the pokemon
-      return pokemon
+      pokeArray.push(pokemon)
     },
     error: function(error){
       console.log(error)
@@ -87,20 +88,51 @@ let pokeArray = []
 let despot = undefined
 
 //each function call will create a new pokemon. must use the .done() callback in order to only push the pokemon into the slave array once the ajax call has completed and the pokemon has been initialized (then the next pokemon, and the next)
-catchPokemon("4").done(function(result){
-  charmander = result; 
-  pokeArray.push(charmander)
-}).done(catchPokemon("26").done(function(result){
-  raichu = result; 
-  pokeArray.push(raichu)
-})).done(catchPokemon("135").done(function(result){
-  jolteon = result; 
-  pokeArray.push(jolteon)
-})).done(function(result){
+catchPokemon("4").done(catchPokemon("26").done(catchPokemon("135").done(function(result){
   //once you have all of your pokemon, you can initialize a new trainer with your pokemon array
   despot = new Trainer("Despot", pokeArray)
-})
+  })
 // .done(function(result){alert("Loaded")})
+
+pokeContainer = (pokemon) => {
+  //put perm stats in a div
+  let name = $("<h3/>").text(pokemon.name)
+  // image: "",
+  let pic = $("<img/>").attr("src", pokemon.image)
+  // pokeNum: 0,
+  let idNum = $("<h5/>").text(pokemon.pokeNum.toString())
+  // types: [],
+  // height: 0,
+  // weight: 0,
+  // abilities: [],
+  // stats: []
+}
+
+// pokeContainer()
+
+  // <div id="pokedex-container">
+  //   <div>Top</div>
+  //   <div id="screen-container">
+  //     <button id="toggle-screen">Toggle Screen</button>
+  //     <div id="window-screen">
+  //       <div id="pokeball-container">
+          
+  //       </div>
+  //       <div class="single-pokemon-div">
+  //         <div id="current-stats"></div>
+  //         <div id="pokemon-image-container"></div>
+  //         <div id="permanent-stats"></div>
+  //       </div>
+  //     </div>
+  //     <div id="buttons">
+  //       <button id="left">Left Button</button>
+  //       <button id="middle">Middle Button</button>
+  //       <button id="right">Right Button</button>
+  //     </div>
+  //   </div>
+  // </div>
+
+
 
 //My Pokemon:
 //Charmander #5
