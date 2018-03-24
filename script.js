@@ -99,9 +99,6 @@ pokeContainer = (pokemon) => {
   //create a container div for permanent stats
   let permanentStats = $("<div/>").addClass("permanent-stats", name)
 
-  //create a container div for current stats
-  let currentStats = $("<div/>").addClass("current-stats", name)
-
   //put perm stats in respective html elements
   let nameEl = $("<h3/>").text(name)
   let idNum = $("<h5/>").text("ID: " + pokemon.pokeNum.toString())
@@ -114,7 +111,7 @@ pokeContainer = (pokemon) => {
   let weight = $("<p/>").text("Weight: " + ((pokemon.weight / 10).toFixed(2)) + "cm.")
 
   //create a list of abilities
-  let abilitiesList = $("<ul/>")
+  let abilitiesList = $("<ul/>").addClass("ability-list")
   pokemon.abilities.forEach((ability) => {
     if (ability.isHidden) {
       $("<li/>").text(ability.name).addClass("hidden-ability").appendTo(abilitiesList)
@@ -134,6 +131,10 @@ pokeContainer = (pokemon) => {
   $(imageCont).appendTo(pokeDivContainer)
 
   //currentstats
+  //create a container div for current stats
+  let currentStats = $("<div/>").addClass("current-stats", name)
+  let healthList = $("<ul/>").addClass("stat-list")
+  pokemon.stats.forEach((stat) => {$("<li/>").text(Object.keys(stat)[0] + ": " + stat.name).appendTo(healthList)})
 }
 
 
