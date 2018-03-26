@@ -64,6 +64,7 @@ function catchPokemon(pokeNameOrIdNumber){
       let pokemon = new Pokemon(pokeHash)
       //clear the array of stats so that it's specific to the pokemon (REFACTOR?)
       pokeHash.stats = []
+      pokeHash.abilities = []
       //return the pokemon
       pokeArray.push(pokemon)
       console.log(pokemon)
@@ -88,89 +89,78 @@ let charmander = {}
 let raichu = {}
 let jolteon = {}
 let pokeArray = []
-let despot = undefined
+let trainer = undefined
 
 pokeContainer = (pokemon) => {
   let name = pokemon.name
 
   //create encompassing div for all individual pokemon data
-  let pokeDivContainer = $("<div/>").addClass("single-pokemon-div", name)
+  let pokeDivContainer = $("<div/>").addClass(`single-pokemon-div ${name}`)
 
   //create a container div for permanent stats
-  let permanentStats = $("<div/>").addClass("permanent-stats", name)
+  let permanentStats = $("<div/>").addClass(`permanent-stats ${name}`)
 
   //put perm stats in respective html elements
-  let nameEl = $("<h3/>").text(name)
+  let nameEl = $("<h3/>").text(name).addClass("name")
   let idNum = $("<h5/>").text("ID: " + pokemon.pokeNum.toString())
+  idNum.addClass("poke-num")
 
 
   //fix elementType.. maybe set it to a <p> and iterate so the text is equal to += each element? (or just a ul)
   let elementType = []
-  pokemon.types.forEach((type) => {elementType.push($("<p/>").text(type))})
-  let height = $("<p/>").text("Height: " + (pokemon.height * 10) + "cm.")
-  let weight = $("<p/>").text("Weight: " + ((pokemon.weight / 10).toFixed(2)) + "cm.")
+  pokemon.types.forEach((type) => {elementType.push($("<p/>").text(type).addClass(type))})
+  let height = $("<p/>").text("Height: " + (pokemon.height * 10) + "cm.").addClass("height")
+  let weight = $("<p/>").text("Weight: " + ((pokemon.weight / 10).toFixed(2)) + "kg").addClass("weight")
 
   //create a list of abilities
   let abilitiesList = $("<ul/>").addClass("ability-list")
   pokemon.abilities.forEach((ability) => {
     if (ability.isHidden) {
-      $("<li/>").text(ability.name).addClass("hidden-ability").appendTo(abilitiesList)
+      $("<li/>").text(ability.name).addClass("hidden-ability ability").appendTo(abilitiesList)
+    } else {
+      $("<li/>").text(ability.name).addClass("ability").appendTo(abilitiesList)
     }
-    $("<li/>").text(ability.name).appendTo(abilitiesList)
   })
 
   //append each of these elements to the permanent stats div and then perm stats to container
-  [nameEl,idNum,elementType,height,weight,abilitiesList].forEach((e) => {$(e).appendTo(permanentStats)})
+  let pokeInfo = [nameEl,idNum,elementType,height,weight,abilitiesList]
+  pokeInfo.forEach((e) => {$(e[0]).appendTo(permanentStats)})
   $(permanentStats).appendTo(pokeDivContainer)
 
   //create separate div container for image and append it
   let imageCont = $("<div/>").addClass("pokemon-image-container")
   // image: "",
   let pic = $("<img/>").attr("src", pokemon.image).addClass(name)
+  let thumbnail = $("<img/>").attr("src", pokemon.image).addClass(`thumbnail ${name}`)
   $(pic).appendTo(imageCont)
+  $(thumbnail).appendTo("#pokeball-container")
   $(imageCont).appendTo(pokeDivContainer)
 
   //currentstats
   //create a container div for current stats
   let currentStats = $("<div/>").addClass("current-stats", name)
   let healthList = $("<ul/>").addClass("stat-list")
-  pokemon.stats.forEach((stat) => {$("<li/>").text(Object.keys(stat)[0] + ": " + stat.name).appendTo(healthList)})
+  pokemon.stats.forEach((stat) => {$("<li/>").text(Object.keys(stat)[0] + ": " + Object.values(stat)[0]).addClass("stat").appendTo(healthList)})
+  $(healthList).appendTo(currentStats)
+  $(currentStats).appendTo(pokeDivContainer)
+  return pokeDivContainer
 }
 
+createContainer = (pokemon) => {
+  let newDiv = pokeContainer(trainer.get(pokemon))
+  $(newDiv).appendTo("#window-screen")
+}
 
-// pokeContainer()
-
-  // <div id="pokedex-container">
-  //   <div>Top</div>
-  //   <div id="screen-container">
-  //     <button id="toggle-screen">Toggle Screen</button>
-  //     <div id="window-screen">
-  //       <div id="pokeball-container">
-          
-  //       </div>
-  //       <div class="single-pokemon-div">
-  //         <div class="current-stats"></div>
-  //         <div class="pokemon-image-container"></div>
-  //         <div class="permanent-stats"></div>
-  //       </div>
-  //     </div>
-  //     <div id="buttons">
-  //       <button id="left">Left Button</button>
-  //       <button id="middle">Middle Button</button>
-  //       <button id="right">Right Button</button>
-  //     </div>
-  //   </div>
-  // </div>
 
 //each function call will create a new pokemon. must use the .done() callback in order to only push the pokemon into the slave array once the ajax call has completed and the pokemon has been initialized (then the next pokemon, and the next)
 catchPokemon("4").done(catchPokemon("26")).done(catchPokemon("135")).done(function(result){
   //once you have all of your pokemon, you can initialize a new trainer with your pokemon array
-  despot = new Trainer("Despot", pokeArray)
+  trainer = new Trainer("trainer", pokeArray)
+  }).done(function(trainer){
+    createContainer("charmander")
+    createContainer("raichu")
+    createContainer("jolteon")
   })
-// .done(function(result){
-//     let char = despot.get("charmander")
-//     pokeContainer(char)
-//     })
 
 
 
