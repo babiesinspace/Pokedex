@@ -95,7 +95,7 @@ pokeContainer = (pokemon) => {
   let name = pokemon.name
 
   //create encompassing div for all individual pokemon data
-  let pokeDivContainer = $("<div/>").addClass(`single-pokemon-div ${name}`)
+  let pokeDivContainer = $("<div/>").addClass(`single-pokemon-div ${name} hidden`)
 
   //create a container div for permanent stats
   let permanentStats = $("<div/>").addClass(`permanent-stats ${name}`)
@@ -166,18 +166,28 @@ $("#pokeball1").hover(function(){
   $(this).attr("src", trainer.minions[0].image)
 }, function(){
   $(this).attr("src", "poke-ball.jpeg")
+}).on("click", function(){
+  let name = ".single-pokemon-div." + trainer.minions[0].name
+  $(name).toggleClass("hidden")
 })
+//You can probably use a filter to find the right name.. later
 
 $("#pokeball2").hover(function(){
   $(this).attr("src", trainer.minions[1].image)
 }, function(){
   $(this).attr("src", "poke-ball.jpeg")
+}).on("click", function(){
+  let name = ".single-pokemon-div." + trainer.minions[1].name
+  $(name).toggleClass("hidden")
 })
 
 $("#pokeball3").hover(function(){
   $(this).attr("src", trainer.minions[2].image)
 }, function(){
   $(this).attr("src", "poke-ball.jpeg")
+}).on("click", function(){
+  let name = ".single-pokemon-div." + trainer.minions[2].name
+  $(name).toggleClass("hidden")
 })
 
 //My Pokemon:
