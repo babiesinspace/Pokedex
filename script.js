@@ -131,7 +131,7 @@ pokeContainer = (pokemon) => {
   let imageCont = $("<div/>").addClass("pokemon-image-container")
   // image: "",
   let pic = $("<img/>").attr("src", pokemon.image).addClass(name)
-  let thumbnail = $("<img/>").attr("src", pokemon.image).addClass(`thumbnail ${name}`)
+  let thumbnail = $("<img/>").attr("src", pokemon.image).addClass(`thumbnail thumb ${name} hidden`)
   $(pic).appendTo(imageCont)
   $(thumbnail).appendTo("#pokeball-container")
   $(imageCont).appendTo(pokeDivContainer)
@@ -162,7 +162,23 @@ catchPokemon("4").done(catchPokemon("26")).done(catchPokemon("135")).done(functi
     createContainer("jolteon")
   })
 
+$("#pokeball1").hover(function(){
+  $(this).attr("src", trainer.minions[0].image)
+}, function(){
+  $(this).attr("src", "poke-ball.jpeg")
+})
 
+$("#pokeball2").hover(function(){
+  $(this).attr("src", trainer.minions[1].image)
+}, function(){
+  $(this).attr("src", "poke-ball.jpeg")
+})
+
+$("#pokeball3").hover(function(){
+  $(this).attr("src", trainer.minions[2].image)
+}, function(){
+  $(this).attr("src", "poke-ball.jpeg")
+})
 
 //My Pokemon:
 //Charmander #5
