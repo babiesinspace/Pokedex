@@ -162,13 +162,17 @@ catchPokemon("4").done(catchPokemon("26")).done(catchPokemon("135")).done(functi
     createContainer("jolteon")
   })
 
+let pokemonDivName
+let pokeballDiv = $("#pokeball-container")
+
 $("#pokeball1").hover(function(){
   $(this).attr("src", trainer.minions[0].image)
 }, function(){
   $(this).attr("src", "poke-ball.jpeg")
 }).on("click", function(){
-  let name = ".single-pokemon-div." + trainer.minions[0].name
-  $(name).toggleClass("hidden")
+  $(pokeballDiv).addClass("hidden")
+  pokemonDivName = ".single-pokemon-div." + trainer.minions[0].name
+  $(pokemonDivName).removeClass("hidden") //switch to remove class once buttons
 })
 //You can probably use a filter to find the right name.. later
 
@@ -177,8 +181,9 @@ $("#pokeball2").hover(function(){
 }, function(){
   $(this).attr("src", "poke-ball.jpeg")
 }).on("click", function(){
-  let name = ".single-pokemon-div." + trainer.minions[1].name
-  $(name).toggleClass("hidden")
+  $(pokeballDiv).addClass("hidden")
+  pokemonDivName = ".single-pokemon-div." + trainer.minions[1].name
+  $(pokemonDivName).removeClass("hidden") //switch to remove class once buttons
 })
 
 $("#pokeball3").hover(function(){
@@ -186,8 +191,15 @@ $("#pokeball3").hover(function(){
 }, function(){
   $(this).attr("src", "poke-ball.jpeg")
 }).on("click", function(){
-  let name = ".single-pokemon-div." + trainer.minions[2].name
-  $(name).toggleClass("hidden")
+  $(pokeballDiv).addClass("hidden")
+  pokemonDivName = ".single-pokemon-div." + trainer.minions[2].name
+  $(pokemonDivName).removeClass("hidden") //switch to remove class once buttons
+})
+
+//Make pokeinfo disappear
+$("#middle").on("click", function(){
+  $(pokeballDiv).removeClass("hidden")
+  $(pokemonDivName).addClass("hidden")
 })
 
 //My Pokemon:
