@@ -1,3 +1,9 @@
+let charmander = {}
+let raichu = {}
+let jolteon = {}
+let pokeArray = []
+let trainer = undefined
+
 //pokemon constructor takes a hash full of poke-data
 class Pokemon {
   constructor(args) {
@@ -84,12 +90,6 @@ function setStats(statistic) {
   return obj
   // pokeHash.stats.push(obj)
 }
-
-let charmander = {}
-let raichu = {}
-let jolteon = {}
-let pokeArray = []
-let trainer = undefined
 
 pokeContainer = (pokemon) => {
   let name = pokemon.name
