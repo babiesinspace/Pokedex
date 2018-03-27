@@ -202,31 +202,36 @@ $("#middle").on("click", function(){
   $(pokemonDivName).addClass("hidden")
 })
 
-// $("#left").on("click", function(){
-//   let children = $(pokemonDivName).children()
-//   // console.log($(pokemonDivName).children())
-//   if ($(children)[0].hasClass("hidden")) {
-//     $(children)[0].removeClass("hidden")
-//     $(children)[1].addClass("hidden")
-//   }
-//   if ($(children)[1].hasClass("hidden") && $(children)[0].hasClass("hidden")) {
-//     $(children)[1].removeClass("hidden")
-//     $(children)[2].addClass("hidden")
-//   }
-// })
 
-// $("#left").on("click", function(){
-//   let children = $(pokemonDivName).children()
-//   // console.log($(pokemonDivName).children())
-//   if ($(children).index(0).hasClass("hidden")) {
-//     $(children).index(0).removeClass("hidden")
-//     $(children).index(1).addClass("hidden")
-//   }
-//   if ($(children).index(1).hasClass("hidden") && $(children)[0].hasClass("hidden")) {
-//     $(children).index(1).removeClass("hidden")
-//     $(children).index(2).addClass("hidden")
-//   }
-// })
+$("#left").on("click", function(){
+  let perm = $(pokemonDivName+" > .permanent-stats")
+  let image = $(pokemonDivName+" > .pokemon-image-container")
+  let current = $(pokemonDivName+" > .current-stats")
+  // if current is shown, show image
+  if (!$(current).hasClass("hidden") && $(image).hasClass("hidden")) {
+    $(image).toggleClass("hidden")
+    $(current).toggleClass("hidden")
+  } else if (!$(image).hasClass("hidden") && $(current).hasClass("hidden")) {
+  //if permanent stats are hidden and image is shown, show perm stats
+    $(perm).toggleClass("hidden")
+    $(image).toggleClass("hidden")
+  }
+})
+
+$("#right").on("click", function(){
+  let perm = $(pokemonDivName+" > .permanent-stats")
+  let image = $(pokemonDivName+" > .pokemon-image-container")
+  let current = $(pokemonDivName+" > .current-stats")
+  //if image is hidden and current stats are hidden
+  if (!$(perm).hasClass("hidden") && $(image).hasClass("hidden")) {
+    $(image).toggleClass("hidden")
+    $(perm).toggleClass("hidden")
+  } else if (!$(image).hasClass("hidden")) {
+  //if current stats are hidden and image is shown, show current stats
+    $(current).toggleClass("hidden")
+    $(image).toggleClass("hidden")
+  }
+})
 
 //My Pokemon:
 //Charmander #5
