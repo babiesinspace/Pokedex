@@ -95,10 +95,10 @@ pokeContainer = (pokemon) => {
   let name = pokemon.name
 
   //create encompassing div for all individual pokemon data
-  let pokeDivContainer = $("<div/>").addClass(`single-pokemon-div ${name}`)
+  let pokeDivContainer = $("<div/>").addClass(`single-pokemon-div ${name} hidden`)
 
   //create a container div for permanent stats
-  let permanentStats = $("<div/>").addClass(`permanent-stats ${name}`)
+  let permanentStats = $("<div/>").addClass(`permanent-stats ${name} hidden`)
 
   //put perm stats in respective html elements
   let nameEl = $("<h3/>").text(name).addClass("name")
@@ -131,14 +131,14 @@ pokeContainer = (pokemon) => {
   let imageCont = $("<div/>").addClass("pokemon-image-container")
   // image: "",
   let pic = $("<img/>").attr("src", pokemon.image).addClass(name)
-  let thumbnail = $("<img/>").attr("src", pokemon.image).addClass(`thumbnail ${name}`)
+  let thumbnail = $("<img/>").attr("src", pokemon.image).addClass(`thumbnail thumb ${name} hidden`)
   $(pic).appendTo(imageCont)
   $(thumbnail).appendTo("#pokeball-container")
   $(imageCont).appendTo(pokeDivContainer)
 
   //currentstats
   //create a container div for current stats
-  let currentStats = $("<div/>").addClass("current-stats", name)
+  let currentStats = $("<div/>").addClass(`current-stats hidden ${name}`)
   let healthList = $("<ul/>").addClass("stat-list")
   pokemon.stats.forEach((stat) => {$("<li/>").text(Object.keys(stat)[0] + ": " + Object.values(stat)[0]).addClass("stat").appendTo(healthList)})
   $(healthList).appendTo(currentStats)
@@ -162,7 +162,71 @@ catchPokemon("4").done(catchPokemon("26")).done(catchPokemon("135")).done(functi
     createContainer("jolteon")
   })
 
+let pokemonDivName
+let pokeballDiv = $("#pokeball-container")
 
+$("#pokeball1").hover(function(){
+  $(this).attr("src", trainer.minions[0].image)
+}, function(){
+  $(this).attr("src", "poke-ball.jpeg")
+}).on("click", function(){
+  $(pokeballDiv).addClass("hidden")
+  pokemonDivName = ".single-pokemon-div." + trainer.minions[0].name
+  $(pokemonDivName).removeClass("hidden") //switch to remove class once buttons
+})
+//You can probably use a filter to find the right name.. later
+
+$("#pokeball2").hover(function(){
+  $(this).attr("src", trainer.minions[1].image)
+}, function(){
+  $(this).attr("src", "poke-ball.jpeg")
+}).on("click", function(){
+  $(pokeballDiv).addClass("hidden")
+  pokemonDivName = ".single-pokemon-div." + trainer.minions[1].name
+  $(pokemonDivName).removeClass("hidden") //switch to remove class once buttons
+})
+
+$("#pokeball3").hover(function(){
+  $(this).attr("src", trainer.minions[2].image)
+}, function(){
+  $(this).attr("src", "poke-ball.jpeg")
+}).on("click", function(){
+  $(pokeballDiv).addClass("hidden")
+  pokemonDivName = ".single-pokemon-div." + trainer.minions[2].name
+  $(pokemonDivName).removeClass("hidden") //switch to remove class once buttons
+})
+
+//Make pokeinfo disappear
+$("#middle").on("click", function(){
+  $(pokeballDiv).removeClass("hidden")
+  $(pokemonDivName).addClass("hidden")
+})
+
+// $("#left").on("click", function(){
+//   let children = $(pokemonDivName).children()
+//   // console.log($(pokemonDivName).children())
+//   if ($(children)[0].hasClass("hidden")) {
+//     $(children)[0].removeClass("hidden")
+//     $(children)[1].addClass("hidden")
+//   }
+//   if ($(children)[1].hasClass("hidden") && $(children)[0].hasClass("hidden")) {
+//     $(children)[1].removeClass("hidden")
+//     $(children)[2].addClass("hidden")
+//   }
+// })
+
+// $("#left").on("click", function(){
+//   let children = $(pokemonDivName).children()
+//   // console.log($(pokemonDivName).children())
+//   if ($(children).index(0).hasClass("hidden")) {
+//     $(children).index(0).removeClass("hidden")
+//     $(children).index(1).addClass("hidden")
+//   }
+//   if ($(children).index(1).hasClass("hidden") && $(children)[0].hasClass("hidden")) {
+//     $(children).index(1).removeClass("hidden")
+//     $(children).index(2).addClass("hidden")
+//   }
+// })
 
 //My Pokemon:
 //Charmander #5
