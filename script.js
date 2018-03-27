@@ -98,7 +98,7 @@ pokeContainer = (pokemon) => {
   let pokeDivContainer = $("<div/>").addClass(`single-pokemon-div ${name} hidden`)
 
   //create a container div for permanent stats
-  let permanentStats = $("<div/>").addClass(`permanent-stats ${name}`)
+  let permanentStats = $("<div/>").addClass(`permanent-stats ${name} hidden`)
 
   //put perm stats in respective html elements
   let nameEl = $("<h3/>").text(name).addClass("name")
@@ -138,7 +138,7 @@ pokeContainer = (pokemon) => {
 
   //currentstats
   //create a container div for current stats
-  let currentStats = $("<div/>").addClass("current-stats", name)
+  let currentStats = $("<div/>").addClass(`current-stats hidden ${name}`)
   let healthList = $("<ul/>").addClass("stat-list")
   pokemon.stats.forEach((stat) => {$("<li/>").text(Object.keys(stat)[0] + ": " + Object.values(stat)[0]).addClass("stat").appendTo(healthList)})
   $(healthList).appendTo(currentStats)
@@ -201,6 +201,32 @@ $("#middle").on("click", function(){
   $(pokeballDiv).removeClass("hidden")
   $(pokemonDivName).addClass("hidden")
 })
+
+// $("#left").on("click", function(){
+//   let children = $(pokemonDivName).children()
+//   // console.log($(pokemonDivName).children())
+//   if ($(children)[0].hasClass("hidden")) {
+//     $(children)[0].removeClass("hidden")
+//     $(children)[1].addClass("hidden")
+//   }
+//   if ($(children)[1].hasClass("hidden") && $(children)[0].hasClass("hidden")) {
+//     $(children)[1].removeClass("hidden")
+//     $(children)[2].addClass("hidden")
+//   }
+// })
+
+// $("#left").on("click", function(){
+//   let children = $(pokemonDivName).children()
+//   // console.log($(pokemonDivName).children())
+//   if ($(children).index(0).hasClass("hidden")) {
+//     $(children).index(0).removeClass("hidden")
+//     $(children).index(1).addClass("hidden")
+//   }
+//   if ($(children).index(1).hasClass("hidden") && $(children)[0].hasClass("hidden")) {
+//     $(children).index(1).removeClass("hidden")
+//     $(children).index(2).addClass("hidden")
+//   }
+// })
 
 //My Pokemon:
 //Charmander #5
