@@ -37,11 +37,6 @@ body {
       }
     }
   }
-  img {
-    height: 30%;
-    width: 30%;
-    margin: 2.5%;
-  }
   .pokedex-bottom {
     margin: auto;
     height: 150px;
@@ -57,14 +52,25 @@ body {
     width: 290px;
     border: 1px solid black;
     background-color: #AFE3EC;
+    #window-screen {
+      height: 80%;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5%;
+      #pokeball-container {
+        height: 100%;
+        text-align: center;
+        img {
+          width: 30%;
+          margin: auto;
+        }
+      }
+    }
   }
 }
 
 
-#window-screen {
-  height: 70%;
-  width: 90%
-}
 
 .hidden {
   display: none;

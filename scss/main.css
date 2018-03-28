@@ -30,10 +30,6 @@ body {
         background-color: grey;
         margin-top: 25%;
         margin-left: 25%; }
-  #pokedex-container img {
-    height: 30%;
-    width: 30%;
-    margin: 2.5%; }
   #pokedex-container .pokedex-bottom {
     margin: auto;
     height: 150px;
@@ -47,10 +43,18 @@ body {
     width: 290px;
     border: 1px solid black;
     background-color: #AFE3EC; }
-
-#window-screen {
-  height: 70%;
-  width: 90%; }
+    #pokedex-container #screen-container #window-screen {
+      height: 80%;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5%; }
+      #pokedex-container #screen-container #window-screen #pokeball-container {
+        height: 100%;
+        text-align: center; }
+        #pokedex-container #screen-container #window-screen #pokeball-container img {
+          width: 30%;
+          margin: auto; }
 
 .hidden {
   display: none; }
