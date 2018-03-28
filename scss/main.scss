@@ -1,5 +1,6 @@
 body {
   background-color: lightgreen;
+  text-transform: capitalize;
 }
 
 #pokedex-container {
@@ -67,10 +68,38 @@ body {
         }
       }
     }
+    #buttons {
+      margin-bottom: 0px;
+    }
   }
 }
 
-
+.single-pokemon-div {
+  height: 100%;
+  .permanent-stats {
+    h3 {
+      text-align: center;
+    }
+    p {
+      width: 50%;
+    }
+    .ability-list {
+      padding: 0;
+      column-count: 2;
+      list-style-type: none;
+      .hidden-ability {
+        font-style: italic;
+        opacity: 0.5;
+      }
+    }
+  }
+  .pokemon-image-container {
+    height: 100%;
+    img {
+      height: 100%;
+    }
+  }
+}
 
 .hidden {
   display: none;

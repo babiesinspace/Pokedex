@@ -102,7 +102,7 @@ pokeContainer = (pokemon) => {
 
   //put perm stats in respective html elements
   let nameEl = $("<h3/>").text(name).addClass("name")
-  let idNum = $("<h5/>").text("ID: " + pokemon.pokeNum.toString())
+  let idNum = $("<p/>").text("ID: " + pokemon.pokeNum.toString())
   idNum.addClass("poke-num")
 
 
