@@ -35,6 +35,7 @@ body {
         background-color: grey;
         margin-top:25%;
         margin-left: 25%;
+        animation: blink 4s infinite;
       }
     }
   }
@@ -110,4 +111,8 @@ body {
   display: none;
 }
 
-
+@keyframes blink {
+  0% { background: grey; }
+  50% { background: #ff1a1a; }
+  100% { background: grey; }
+}
