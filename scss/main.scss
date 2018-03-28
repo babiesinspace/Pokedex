@@ -7,6 +7,12 @@ body {
   height: 90%;
   border: 1px solid black;
   margin: 0 auto;
+
+  img {
+    height: 30%;
+    width: 30%;
+    margin: 2.5%;
+  }
 }
 
 #screen-container {
@@ -19,14 +25,7 @@ body {
   width: 90%
 }
 
-
-#pokeball-container img {
-  height: 30%;
-  width: 30%;
-  margin: 2.5%;
-}
-
-
 .hidden {
   display: none;
 }
+
