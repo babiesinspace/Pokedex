@@ -200,7 +200,7 @@ $("#pokeball3").hover(function(){
 //Buttons:
 
 $("#toggle-screen").on("click", function() {
-  $("#window-screen").toggleClass("hidden")
+  $("#screen-container").toggleClass("hidden")
 })
 
 //Make pokeinfo disappear
