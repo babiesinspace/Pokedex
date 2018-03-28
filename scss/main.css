@@ -83,9 +83,18 @@ body {
 .single-pokemon-div {
   height: 100%; }
   .single-pokemon-div .permanent-stats {
-    text-align: center; }
-    .single-pokemon-div .permanent-stats h3 {
-      text-align: center; }
+    text-align: center;
+    height: 100%; }
+    .single-pokemon-div .permanent-stats h2 {
+      margin: 0 auto;
+      text-align: center;
+      font-size: 2em;
+      line-height: 110%;
+      font-weight: 600; }
+    .single-pokemon-div .permanent-stats h4 {
+      font-size: 1.2em;
+      font-weight: 500;
+      line-height: 100%; }
     .single-pokemon-div .permanent-stats p {
       width: 25%;
       display: inline-block;
