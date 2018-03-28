@@ -140,6 +140,30 @@ body {
       height: 100%;
     }
   }
+  .current-stats {
+    height: 100%;
+
+    h2 {
+      font-size: 2em;
+      line-height: 110%;
+      margin: 0 auto;
+      text-align: center;
+      font-weight: 500;
+    }
+    .stat-list {
+      .stat {
+        display: block;
+        .stat-type {
+          padding-left: 10%;
+        }
+        .stat-value {
+          float: right;
+          padding-right: 10%;
+          font-weight: 600;
+        }
+      }
+    }
+  }
 }
 
 .hidden {
