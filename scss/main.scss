@@ -77,11 +77,15 @@ body {
 .single-pokemon-div {
   height: 100%;
   .permanent-stats {
+    text-align: center;
     h3 {
       text-align: center;
     }
     p {
-      width: 50%;
+      width: 25%;
+      display: inline-block;
+      margin: 5% 12.5%;
+      text-align: center;
     }
     .ability-list {
       padding: 0;

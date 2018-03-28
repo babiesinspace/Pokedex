@@ -101,18 +101,19 @@ pokeContainer = (pokemon) => {
   let permanentStats = $("<div/>").addClass(`permanent-stats ${name} hidden`)
 
   //put perm stats in respective html elements
-  let nameEl = $("<h3/>").text(name).addClass("name")
-  let idNum = $("<p/>").text("ID: " + pokemon.pokeNum.toString())
+  let nameEl = $("<h2/>").text(name).addClass("name")
+  let idNum = $("<p/>").text("#" + pokemon.pokeNum.toString())
   idNum.addClass("poke-num")
 
 
   //fix elementType.. maybe set it to a <p> and iterate so the text is equal to += each element? (or just a ul)
   let elementType = []
   pokemon.types.forEach((type) => {elementType.push($("<p/>").text(type).addClass(type))})
-  let height = $("<p/>").text("Height: " + (pokemon.height * 10) + "cm.").addClass("height")
-  let weight = $("<p/>").text("Weight: " + ((pokemon.weight / 10).toFixed(2)) + "kg").addClass("weight")
+  let height = $("<p/>").text((pokemon.height * 10) + "cm.").addClass("height")
+  let weight = $("<p/>").text(((pokemon.weight / 10).toFixed(2)) + "kg").addClass("weight")
 
   //create a list of abilities
+  let listTitle = $("<h4/>").text("Abilities")
   let abilitiesList = $("<ul/>").addClass("ability-list")
   pokemon.abilities.forEach((ability) => {
     if (ability.isHidden) {
@@ -123,7 +124,7 @@ pokeContainer = (pokemon) => {
   })
 
   //append each of these elements to the permanent stats div and then perm stats to container
-  let pokeInfo = [nameEl,idNum,elementType,height,weight,abilitiesList]
+  let pokeInfo = [nameEl,idNum,elementType,height,weight,listTitle,abilitiesList]
   pokeInfo.forEach((e) => {$(e[0]).appendTo(permanentStats)})
   $(permanentStats).appendTo(pokeDivContainer)
 
