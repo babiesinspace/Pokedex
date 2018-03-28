@@ -6,17 +6,19 @@ body {
   margin-left: auto;
   margin-right: auto; }
   #pokedex-container .pokedex-top {
+    margin: auto;
     height: 150px;
     width: 300px;
     background-color: red;
     border: 1px solid black;
+    border-bottom: 20px solid black;
     border-radius: 10px 10px 0 0; }
     #pokedex-container .pokedex-top .toggle-container {
       height: 50px;
       width: 50px;
       background-color: white;
       position: absolute;
-      margin-top: 125px;
+      margin-top: 135px;
       margin-left: 125px;
       z-index: 10;
       border: 1px solid black;
@@ -33,16 +35,18 @@ body {
     width: 30%;
     margin: 2.5%; }
   #pokedex-container .pokedex-bottom {
+    margin: auto;
     height: 150px;
     width: 300px;
     background-color: white;
     border: 1px solid black;
-    border-radius: 0 0 10px 10px;
-    margin-top: -10px; }
-
-#screen-container {
-  height: 50%;
-  width: 50%; }
+    border-radius: 0 0 10px 10px; }
+  #pokedex-container #screen-container {
+    margin: auto;
+    height: 290px;
+    width: 290px;
+    border: 1px solid black;
+    background-color: #AFE3EC; }
 
 #window-screen {
   height: 70%;
