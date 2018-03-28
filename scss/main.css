@@ -19,7 +19,7 @@ body {
       width: 50px;
       background-color: white;
       position: absolute;
-      margin-top: 135px;
+      margin-top: 112.5px;
       margin-left: 125px;
       z-index: 10;
       border: 1px solid black;
@@ -46,11 +46,13 @@ body {
     border: 1px solid black;
     background-color: #AFE3EC; }
     #pokedex-container #screen-container #window-screen {
+      background-color: #c8f5fd;
       height: 80%;
       width: 90%;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 5%; }
+      margin-top: 5%;
+      border: 2px solid #9eccd4; }
       #pokedex-container #screen-container #window-screen #pokeball-container {
         height: 100%;
         text-align: center; }
@@ -58,7 +60,25 @@ body {
           width: 30%;
           margin: auto; }
     #pokedex-container #screen-container #buttons {
-      margin-bottom: 0px; }
+      margin-top: 2px;
+      text-align: center; }
+      #pokedex-container #screen-container #buttons #left {
+        height: 35px;
+        width: 35px;
+        border-top: 35px solid #9eccd4;
+        padding: 0;
+        border-bottom-left-radius: 100px; }
+      #pokedex-container #screen-container #buttons #right {
+        width: 35px;
+        height: 35px;
+        border-top: 35px solid #9eccd4;
+        border-bottom-right-radius: 100px;
+        padding: 0; }
+      #pokedex-container #screen-container #buttons #middle {
+        height: 36px;
+        width: 36px;
+        background-color: #9eccd4;
+        padding: 0; }
 
 .single-pokemon-div {
   height: 100%; }
