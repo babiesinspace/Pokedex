@@ -196,6 +196,13 @@ $("#pokeball3").hover(function(){
   $(pokemonDivName).removeClass("hidden") //switch to remove class once buttons
 })
 
+
+//Buttons:
+
+$("#toggle-screen").on("click", function() {
+  $("#window-screen").toggleClass("hidden")
+})
+
 //Make pokeinfo disappear
 $("#middle").on("click", function(){
   $(pokeballDiv).removeClass("hidden")
