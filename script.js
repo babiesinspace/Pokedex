@@ -168,7 +168,7 @@ let pokeballDiv = $("#pokeball-container")
 $("#pokeball1").hover(function(){
   $(this).attr("src", trainer.minions[0].image)
 }, function(){
-  $(this).attr("src", "poke-ball.jpeg")
+  $(this).attr("src", "pokeball.png")
 }).on("click", function(){
   $(pokeballDiv).addClass("hidden")
   pokemonDivName = ".single-pokemon-div." + trainer.minions[0].name
@@ -179,7 +179,7 @@ $("#pokeball1").hover(function(){
 $("#pokeball2").hover(function(){
   $(this).attr("src", trainer.minions[1].image)
 }, function(){
-  $(this).attr("src", "poke-ball.jpeg")
+  $(this).attr("src", "pokeball.png")
 }).on("click", function(){
   $(pokeballDiv).addClass("hidden")
   pokemonDivName = ".single-pokemon-div." + trainer.minions[1].name
@@ -189,7 +189,7 @@ $("#pokeball2").hover(function(){
 $("#pokeball3").hover(function(){
   $(this).attr("src", trainer.minions[2].image)
 }, function(){
-  $(this).attr("src", "poke-ball.jpeg")
+  $(this).attr("src", "pokeball.png")
 }).on("click", function(){
   $(pokeballDiv).addClass("hidden")
   pokemonDivName = ".single-pokemon-div." + trainer.minions[2].name
