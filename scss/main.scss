@@ -8,6 +8,13 @@ body {
   border: 1px solid black;
   margin: 0 auto;
 
+  .pokedex-top {
+    height: 150px;
+    width: 300px;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 10px;
+  }
   img {
     height: 30%;
     width: 30%;
