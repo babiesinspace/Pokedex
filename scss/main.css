@@ -78,7 +78,8 @@ body {
         font-style: italic;
         opacity: 0.5; }
   .single-pokemon-div .pokemon-image-container {
-    height: 100%; }
+    height: 100%;
+    text-align: center; }
     .single-pokemon-div .pokemon-image-container img {
       height: 100%; }
 
