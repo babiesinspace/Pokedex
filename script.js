@@ -238,8 +238,6 @@ $("#pokeball3").hover(function(){
 
 
 //Buttons:
-
-
 signalLoad = () => {
   $("#toggle-screen").addClass("pulse");
 }
@@ -283,3 +281,5 @@ $("#right").on("click", function(){
     $(image).toggleClass("hidden")
   }
 })
+
+
