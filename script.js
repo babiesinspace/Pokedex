@@ -160,6 +160,18 @@ generateImageDiv = (pokemon, container) => {
   $(imageCont).appendTo(container) 
 }
 
+generateHealthStats = (pokemon, container) => {
+  let name = pokemon.name
+  //create a container div for current stats
+  let currentStats = $("<div/>").addClass(`current-stats hidden ${name}`)
+  let healthListTitle = $("<h2/>").text(name + "'s Stats")
+  $(healthListTitle).appendTo(currentStats)
+  let healthList = $("<ul/>").addClass("stat-list")
+  pokemon.stats.forEach((stat) => {$("<li/>").html("<span class='stat-type'>" + Object.keys(stat)[0] + ":</span> <span class='stat-value'>" + Object.values(stat)[0] + "</span>").addClass("stat").appendTo(healthList)})
+  $(healthList).appendTo(currentStats)
+  $(currentStats).appendTo(container)
+}
+
 pokeContainer = (pokemon) => {
   let name = pokemon.name
   //create encompassing div for all individual pokemon data
@@ -169,15 +181,8 @@ pokeContainer = (pokemon) => {
 
   generateImageDiv(pokemon, pokeDivContainer)
 
-  //currentstats
-  //create a container div for current stats
-  let currentStats = $("<div/>").addClass(`current-stats hidden ${name}`)
-  let healthListTitle = $("<h2/>").text(name + "'s Stats")
-  $(healthListTitle).appendTo(currentStats)
-  let healthList = $("<ul/>").addClass("stat-list")
-  pokemon.stats.forEach((stat) => {$("<li/>").html("<span class='stat-type'>" + Object.keys(stat)[0] + ":</span> <span class='stat-value'>" + Object.values(stat)[0] + "</span>").addClass("stat").appendTo(healthList)})
-  $(healthList).appendTo(currentStats)
-  $(currentStats).appendTo(pokeDivContainer)
+  generateHealthStats(pokemon, pokeDivContainer)
+
   return pokeDivContainer
 }
 
@@ -187,7 +192,7 @@ createContainer = (pokemon) => {
 }
 
 
-//each function call will create a new pokemon. must use the .done() callback in order to only push the pokemon into the slave array once the ajax call has completed and the pokemon has been initialized (then the next pokemon, and the next)
+//each function call will create a new pokemon. must use the .done() callback in order to only push the pokemon into the poke array once the ajax call has completed and the pokemon has been initialized (then the next pokemon, and the next)
 catchPokemon("4").done(catchPokemon("26")).done(catchPokemon("135")).done(function(result){
   //once you have all of your pokemon, you can initialize a new trainer with your pokemon array
   trainer = new Trainer("trainer", pokeArray)
@@ -244,7 +249,6 @@ $("#middle").on("click", function(){
   $(pokemonDivName).addClass("hidden")
 })
 
-
 $("#left").on("click", function(){
   let perm = $(pokemonDivName+" > .permanent-stats")
   let image = $(pokemonDivName+" > .pokemon-image-container")
@@ -274,26 +278,3 @@ $("#right").on("click", function(){
     $(image).toggleClass("hidden")
   }
 })
-
-//My Pokemon:
-//Charmander #5
-//Raichu #27
-//Jolteon #136
-
-//Perm Stats:
-//Name
-//Image
-//Poke Number
-//Type
-//Height
-//Weight
-//Abilities
-//Evolution Chain (nice to have) (https://pokeapi.co/api/v2/evolution-chain/2/ === Charmander)
-
-//Base Stats: {statName: numValue}
-// HP
-// Attack
-// Defense
-// Special Attack 
-// Special Defense
-// Speed
