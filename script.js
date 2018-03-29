@@ -49,6 +49,26 @@ let pokeHash = {
   stats: []
 }
 
+getStats = (response) => {
+  //pass each statistic into the setStats function
+  response.stats.map(function(statistic){pokeHash.stats.push(setStats(statistic))})
+}
+
+//create a key value pair for each stat and it's base value, then push into the stat array contained within the pokeHash
+function setStats(statistic) {
+  let obj = {}
+  let name = statistic.stat.name
+  let baseValue = statistic.base_stat
+  obj[name] = baseValue
+  return obj
+}
+
+getAbilities = (response) => {
+  //map through the abilities array and create a hash out of each ability - contains its name and if it is hidden
+  response.abilities.map(function(power){pokeHash.abilities.push({name: power.ability.name, isHidden: power.is_hidden})})
+  
+}
+
 //takes a pokemon name or id number and uses that parameter as the tail of the api call
 function catchPokemon(pokeNameOrIdNumber){
   //must return the result of the ajax call
@@ -62,10 +82,8 @@ function catchPokemon(pokeNameOrIdNumber){
       pokeHash.types = response.types.map(function(type){return type.type.name})
       pokeHash.height = response.height
       pokeHash.weight = response.weight
-      //map through the abilities array and create a hash out of each ability - contains its name and if it is hidden
-      response.abilities.map(function(power){pokeHash.abilities.push({name: power.ability.name, isHidden: power.is_hidden})})
-      //pass each statistic into the setStats function
-      response.stats.map(function(statistic){pokeHash.stats.push(setStats(statistic))})
+      getAbilities(response)
+      getStats(response)
       //create a new pokemon
       let pokemon = new Pokemon(pokeHash)
       //clear the array of stats so that it's specific to the pokemon (REFACTOR?)
@@ -81,22 +99,33 @@ function catchPokemon(pokeNameOrIdNumber){
   })
 }
 
-//create a key value pair for each stat and it's base value, then push into the stat array contained within the pokeHash
-function setStats(statistic) {
-  let obj = {}
-  let name = statistic.stat.name
-  let baseValue = statistic.base_stat
-  obj[name] = baseValue
-  return obj
-  // pokeHash.stats.push(obj)
+checkIfAbilityHidden = (ability, list) => {
+  if (ability.isHidden) {
+    $("<li/>").text(ability.name).addClass("hidden-ability ability").appendTo(list)
+  } else {
+    $("<li/>").text(ability.name).addClass("ability").appendTo(list)
+  }
 }
 
-pokeContainer = (pokemon) => {
+generateAbilities = (pokemon) => {
+  let abilitiesList = $("<ul/>").addClass("ability-list")
+  pokemon.abilities.forEach((ability) => {checkIfAbilityHidden(ability, abilitiesList)})
+  return abilitiesList
+}
+
+generateElements = (pokemon) => {
+  //add each element to a p tag, with a span to mark its type (for pokemon with > 1 type)
+  let elementTag = $("<p/>")
+  pokemon.types.forEach((type) => {
+    let typeList = $(elementTag).html()
+    typeList += `<span class=${type}>` + type + "</span>"
+    $(elementTag).html(typeList)
+  })
+  return elementTag
+}
+
+generatePermanentStats = (pokemon, container) => {
   let name = pokemon.name
-
-  //create encompassing div for all individual pokemon data
-  let pokeDivContainer = $("<div/>").addClass(`single-pokemon-div ${name} hidden`)
-
   //create a container div for permanent stats
   let permanentStats = $("<div/>").addClass(`permanent-stats ${name} hidden`)
 
@@ -105,29 +134,22 @@ pokeContainer = (pokemon) => {
   let idNum = $("<p/>").text("#" + pokemon.pokeNum.toString())
   idNum.addClass("poke-num")
 
+  let elementType = generateElements(pokemon)
 
-  //fix elementType.. maybe set it to a <p> and iterate so the text is equal to += each element? (or just a ul)
-  let elementType = []
-  pokemon.types.forEach((type) => {elementType.push($("<p/>").text(type).addClass(type))})
   let height = $("<p/>").text((pokemon.height * 10) + "cm.").addClass("height")
   let weight = $("<p/>").text(((pokemon.weight / 10).toFixed(2)) + "kg").addClass("weight")
 
   //create a list of abilities
   let abilityListTitle = $("<h4/>").text("Abilities")
-  let abilitiesList = $("<ul/>").addClass("ability-list")
-  pokemon.abilities.forEach((ability) => {
-    if (ability.isHidden) {
-      $("<li/>").text(ability.name).addClass("hidden-ability ability").appendTo(abilitiesList)
-    } else {
-      $("<li/>").text(ability.name).addClass("ability").appendTo(abilitiesList)
-    }
-  })
+  let abilitiesList = generateAbilities(pokemon)
 
   //append each of these elements to the permanent stats div and then perm stats to container
   let pokeInfo = [nameEl,idNum,elementType,height,weight,abilityListTitle,abilitiesList]
   pokeInfo.forEach((e) => {$(e[0]).appendTo(permanentStats)})
-  $(permanentStats).appendTo(pokeDivContainer)
+  $(permanentStats).appendTo(container)
+}
 
+generateImageDiv = (pokemon, container) => {
   //create separate div container for image and append it
   let imageCont = $("<div/>").addClass("pokemon-image-container")
   // image: "",
@@ -135,9 +157,11 @@ pokeContainer = (pokemon) => {
   let thumbnail = $("<img/>").attr("src", pokemon.image).addClass(`thumbnail thumb ${name} hidden`)
   $(pic).appendTo(imageCont)
   $(thumbnail).appendTo("#pokeball-container")
-  $(imageCont).appendTo(pokeDivContainer)
+  $(imageCont).appendTo(container) 
+}
 
-  //currentstats
+generateHealthStats = (pokemon, container) => {
+  let name = pokemon.name
   //create a container div for current stats
   let currentStats = $("<div/>").addClass(`current-stats hidden ${name}`)
   let healthListTitle = $("<h2/>").text(name + "'s Stats")
@@ -145,7 +169,20 @@ pokeContainer = (pokemon) => {
   let healthList = $("<ul/>").addClass("stat-list")
   pokemon.stats.forEach((stat) => {$("<li/>").html("<span class='stat-type'>" + Object.keys(stat)[0] + ":</span> <span class='stat-value'>" + Object.values(stat)[0] + "</span>").addClass("stat").appendTo(healthList)})
   $(healthList).appendTo(currentStats)
-  $(currentStats).appendTo(pokeDivContainer)
+  $(currentStats).appendTo(container)
+}
+
+pokeContainer = (pokemon) => {
+  let name = pokemon.name
+  //create encompassing div for all individual pokemon data
+  let pokeDivContainer = $("<div/>").addClass(`single-pokemon-div ${name} hidden`)
+
+  generatePermanentStats(pokemon, pokeDivContainer)
+
+  generateImageDiv(pokemon, pokeDivContainer)
+
+  generateHealthStats(pokemon, pokeDivContainer)
+
   return pokeDivContainer
 }
 
@@ -155,15 +192,15 @@ createContainer = (pokemon) => {
 }
 
 
-//each function call will create a new pokemon. must use the .done() callback in order to only push the pokemon into the slave array once the ajax call has completed and the pokemon has been initialized (then the next pokemon, and the next)
+//each function call will create a new pokemon. must use the .done() callback in order to only push the pokemon into the poke array once the ajax call has completed and the pokemon has been initialized (then the next pokemon, and the next)
 catchPokemon("4").done(catchPokemon("26")).done(catchPokemon("135")).done(function(result){
   //once you have all of your pokemon, you can initialize a new trainer with your pokemon array
   trainer = new Trainer("trainer", pokeArray)
   }).done(function(trainer){
-    createContainer("charmander")
-    createContainer("raichu")
-    createContainer("jolteon")
-  })
+    createContainer("charmander")}).then(function(trainer){
+    createContainer("raichu")}).then(function(trainer){
+    createContainer("jolteon")}).then(function(trainer){
+    signalLoad()});
 
 let pokemonDivName
 let pokeballDiv = $("#pokeball-container")
@@ -202,6 +239,11 @@ $("#pokeball3").hover(function(){
 
 //Buttons:
 
+
+signalLoad = () => {
+  $("#toggle-screen").addClass("pulse");
+}
+
 $("#toggle-screen").on("click", function() {
   $("#screen-container").toggleClass("hidden")
 })
@@ -211,7 +253,6 @@ $("#middle").on("click", function(){
   $(pokeballDiv).removeClass("hidden")
   $(pokemonDivName).addClass("hidden")
 })
-
 
 $("#left").on("click", function(){
   let perm = $(pokemonDivName+" > .permanent-stats")
@@ -242,26 +283,3 @@ $("#right").on("click", function(){
     $(image).toggleClass("hidden")
   }
 })
-
-//My Pokemon:
-//Charmander #5
-//Raichu #27
-//Jolteon #136
-
-//Perm Stats:
-//Name
-//Image
-//Poke Number
-//Type
-//Height
-//Weight
-//Abilities
-//Evolution Chain (nice to have) (https://pokeapi.co/api/v2/evolution-chain/2/ === Charmander)
-
-//Base Stats: {statName: numValue}
-// HP
-// Attack
-// Defense
-// Special Attack 
-// Special Defense
-// Speed

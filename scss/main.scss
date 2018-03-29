@@ -1,63 +1,39 @@
+@import 'colors';
+@import 'variables-mixins';
+@import 'top';
+@import 'drop-down';
+@import 'poke-div';
+@import 'buttons';
+@import 'bottom';
+
+html {
+  background: url("../battleground.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
 body {
-  background-color: lightgreen;
   text-transform: capitalize;
 }
 
 #pokedex-container {
+  margin-top: 15%;
   width: 350px;
   margin-left: auto;
   margin-right: auto;
-
-  .pokedex-top {
-    margin: auto;
-    height: 150px;
-    width: 300px;
-    // background-color: red;
-    background: linear-gradient(-45deg, #ff3019 0%, #cf0404 100%);
-    border: 1px solid black;
-    border-bottom: 20px solid black;
-    border-radius: 10px 10px 0 0;
-
-    .toggle-container {
-      height: 50px;
-      width: 50px;
-      background-color: white;
-      position:absolute;
-      margin-top: 112.5px;
-      margin-left: 125px;
-      z-index: 10;
-      border: 1px solid black;
-      border-radius: 50px;
-
-      #toggle-screen{
-        height: 25px;
-        width: 25px;
-        border-radius: 25px;
-        background-color: grey;
-        margin-top:25%;
-        margin-left: 25%;
-        animation: blink 4s infinite;
-      }
-    }
-  }
-  .pokedex-bottom {
-    margin: auto;
-    height: 150px;
-    width: 300px;
-    // background-color: white;
-    background: linear-gradient(135deg, #f5f9f0 0%,#f9fcf7 100%);
-    border: 1px solid black;
-    border-radius: 0 0 10px 10px;
-  }
 
   #screen-container {
     margin: auto;
     height: 290px;
     width: 290px;
     border: 0.1px solid black;
-    border-bottom-color: #AFE3EC;
-    border-top-color: #AFE3EC;
-    background-color: #AFE3EC;
+    border-bottom-color: $screen-color;
+    border-top-color: $screen-color;
+    background-color: $screen-color;
     #window-screen {
       background-color: #c8f5fd;
       height: 80%;
@@ -67,118 +43,25 @@ body {
       margin-top: 5%;
       border: 2px solid #9eccd4;
       #pokeball-container {
-        height: 100%;
+        height: $full-fit;
         text-align: center;
         img {
           width: 30%;
           margin: auto;
         }
       }
-
-      // #99c2ca
-    }
-    #buttons {
-      margin-top: 2px;
-      text-align: center;
-      #left {
-        height: 35px;
-        width: 35px;
-        border-top: 35px solid #9eccd4;
-        padding: 0;
-        border-bottom-left-radius: 100px;
-      }
-      #right {
-        width: 35px;
-        height: 35px;
-        border-top: 35px solid #9eccd4;
-        border-bottom-right-radius: 100px;
-        padding: 0;
-      }
-      #middle {
-        height: 36px;
-        width: 36px;
-        background-color: #AFE3EC * 0.9;
-        padding: 0;
-      }
     }
   }
 }
 
-.single-pokemon-div {
-  height: 100%;
-  .permanent-stats {
-    text-align: center;
-    height: 100%;
-    h2 {
-      margin: 0 auto;
-      text-align: center;
-      font-size: 2em;
-      line-height: 110%;
-      font-weight: 600;
-    }
-    h4 {
-      font-size: 1.2em;
-      font-weight: 500;
-      line-height: 100%;
-    }
-    p {
-      width: 25%;
-      display: inline-block;
-      margin: 5% 12.5%;
-      text-align: center;
-      &.poke-num {
-        font-weight: 600;
-      }
-    }
-    .ability-list {
-      padding: 0;
-      column-count: 2;
-      list-style-type: none;
-      .hidden-ability {
-        font-style: italic;
-        opacity: 0.5;
-      }
-    }
-  }
-  .pokemon-image-container {
-    height: 100%;
-    text-align: center;
-    img {
-      height: 100%;
-    }
-  }
-  .current-stats {
-    height: 100%;
 
-    h2 {
-      font-size: 2em;
-      line-height: 110%;
-      margin: 0 auto;
-      text-align: center;
-      font-weight: 500;
-    }
-    .stat-list {
-      .stat {
-        display: block;
-        .stat-type {
-          padding-left: 10%;
-        }
-        .stat-value {
-          float: right;
-          padding-right: 10%;
-          font-weight: 600;
-        }
-      }
-    }
-  }
-}
 
 .hidden {
   display: none;
 }
 
 @keyframes blink {
-  0% { background: grey; }
+  0% { background: $grey; }
   50% { background: #ff1a1a; }
-  100% { background: grey; }
+  100% { background: $grey; }
 }
