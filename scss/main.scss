@@ -12,7 +12,8 @@ body {
     margin: auto;
     height: 150px;
     width: 300px;
-    background-color: red;
+    // background-color: red;
+    background: linear-gradient(-45deg, #ff3019 0%, #cf0404 100%);
     border: 1px solid black;
     border-bottom: 20px solid black;
     border-radius: 10px 10px 0 0;
@@ -43,7 +44,8 @@ body {
     margin: auto;
     height: 150px;
     width: 300px;
-    background-color: white;
+    // background-color: white;
+    background: linear-gradient(135deg, #f5f9f0 0%,#f9fcf7 100%);
     border: 1px solid black;
     border-radius: 0 0 10px 10px;
   }
@@ -52,7 +54,9 @@ body {
     margin: auto;
     height: 290px;
     width: 290px;
-    border: 1px solid black;
+    border: 0.1px solid black;
+    border-bottom-color: #AFE3EC;
+    border-top-color: #AFE3EC;
     background-color: #AFE3EC;
     #window-screen {
       background-color: #c8f5fd;
@@ -122,6 +126,9 @@ body {
       display: inline-block;
       margin: 5% 12.5%;
       text-align: center;
+      &.poke-num {
+        font-weight: 600;
+      }
     }
     .ability-list {
       padding: 0;
