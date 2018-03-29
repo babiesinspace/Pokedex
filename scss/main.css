@@ -148,11 +148,20 @@
   border: 1px solid black;
   border-radius: 0 0 10px 10px; }
 
+html {
+  background: url("../battleground.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100%; }
+
 body {
-  background-color: lightgreen;
   text-transform: capitalize; }
 
 #pokedex-container {
+  margin-top: 15%;
   width: 350px;
   margin-left: auto;
   margin-right: auto; }
