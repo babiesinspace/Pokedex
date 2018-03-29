@@ -78,7 +78,7 @@ body {
         padding: 0; }
       #pokedex-container #screen-container #buttons #middle {
         height: 36px;
-        width: 36px;
+        width: 17.5px;
         background-color: #9eccd4;
         padding: 0; }
 
@@ -88,11 +88,11 @@ body {
     text-align: center;
     height: 100%; }
     .single-pokemon-div .permanent-stats h2 {
-      margin: 0 auto;
-      text-align: center;
       font-size: 2em;
       line-height: 110%;
-      font-weight: 600; }
+      font-weight: 600;
+      margin: 0 auto;
+      text-align: center; }
     .single-pokemon-div .permanent-stats h4 {
       font-size: 1.2em;
       font-weight: 500;
@@ -121,9 +121,9 @@ body {
     .single-pokemon-div .current-stats h2 {
       font-size: 2em;
       line-height: 110%;
+      font-weight: 600;
       margin: 0 auto;
-      text-align: center;
-      font-weight: 500; }
+      text-align: center; }
     .single-pokemon-div .current-stats .stat-list .stat {
       display: block; }
       .single-pokemon-div .current-stats .stat-list .stat .stat-type {
