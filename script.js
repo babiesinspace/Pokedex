@@ -197,10 +197,10 @@ catchPokemon("4").done(catchPokemon("26")).done(catchPokemon("135")).done(functi
   //once you have all of your pokemon, you can initialize a new trainer with your pokemon array
   trainer = new Trainer("trainer", pokeArray)
   }).done(function(trainer){
-    createContainer("charmander")
-    createContainer("raichu")
-    createContainer("jolteon")
-  })
+    createContainer("charmander")}).then(function(trainer){
+    createContainer("raichu")}).then(function(trainer){
+    createContainer("jolteon")}).then(function(trainer){
+    signalLoad()});
 
 let pokemonDivName
 let pokeballDiv = $("#pokeball-container")
@@ -238,6 +238,11 @@ $("#pokeball3").hover(function(){
 
 
 //Buttons:
+
+
+signalLoad = () => {
+  $("#toggle-screen").addClass("pulse");
+}
 
 $("#toggle-screen").on("click", function() {
   $("#screen-container").toggleClass("hidden")
