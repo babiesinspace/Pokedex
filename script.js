@@ -101,18 +101,19 @@ pokeContainer = (pokemon) => {
   let permanentStats = $("<div/>").addClass(`permanent-stats ${name} hidden`)
 
   //put perm stats in respective html elements
-  let nameEl = $("<h3/>").text(name).addClass("name")
-  let idNum = $("<h5/>").text("ID: " + pokemon.pokeNum.toString())
+  let nameEl = $("<h2/>").text(name).addClass("name")
+  let idNum = $("<p/>").text("#" + pokemon.pokeNum.toString())
   idNum.addClass("poke-num")
 
 
   //fix elementType.. maybe set it to a <p> and iterate so the text is equal to += each element? (or just a ul)
   let elementType = []
   pokemon.types.forEach((type) => {elementType.push($("<p/>").text(type).addClass(type))})
-  let height = $("<p/>").text("Height: " + (pokemon.height * 10) + "cm.").addClass("height")
-  let weight = $("<p/>").text("Weight: " + ((pokemon.weight / 10).toFixed(2)) + "kg").addClass("weight")
+  let height = $("<p/>").text((pokemon.height * 10) + "cm.").addClass("height")
+  let weight = $("<p/>").text(((pokemon.weight / 10).toFixed(2)) + "kg").addClass("weight")
 
   //create a list of abilities
+  let abilityListTitle = $("<h4/>").text("Abilities")
   let abilitiesList = $("<ul/>").addClass("ability-list")
   pokemon.abilities.forEach((ability) => {
     if (ability.isHidden) {
@@ -123,7 +124,7 @@ pokeContainer = (pokemon) => {
   })
 
   //append each of these elements to the permanent stats div and then perm stats to container
-  let pokeInfo = [nameEl,idNum,elementType,height,weight,abilitiesList]
+  let pokeInfo = [nameEl,idNum,elementType,height,weight,abilityListTitle,abilitiesList]
   pokeInfo.forEach((e) => {$(e[0]).appendTo(permanentStats)})
   $(permanentStats).appendTo(pokeDivContainer)
 
@@ -139,8 +140,10 @@ pokeContainer = (pokemon) => {
   //currentstats
   //create a container div for current stats
   let currentStats = $("<div/>").addClass(`current-stats hidden ${name}`)
+  let healthListTitle = $("<h2/>").text(name + "'s Stats")
+  $(healthListTitle).appendTo(currentStats)
   let healthList = $("<ul/>").addClass("stat-list")
-  pokemon.stats.forEach((stat) => {$("<li/>").text(Object.keys(stat)[0] + ": " + Object.values(stat)[0]).addClass("stat").appendTo(healthList)})
+  pokemon.stats.forEach((stat) => {$("<li/>").html("<span class='stat-type'>" + Object.keys(stat)[0] + ":</span> <span class='stat-value'>" + Object.values(stat)[0] + "</span>").addClass("stat").appendTo(healthList)})
   $(healthList).appendTo(currentStats)
   $(currentStats).appendTo(pokeDivContainer)
   return pokeDivContainer
@@ -168,7 +171,7 @@ let pokeballDiv = $("#pokeball-container")
 $("#pokeball1").hover(function(){
   $(this).attr("src", trainer.minions[0].image)
 }, function(){
-  $(this).attr("src", "poke-ball.jpeg")
+  $(this).attr("src", "pokeball.png")
 }).on("click", function(){
   $(pokeballDiv).addClass("hidden")
   pokemonDivName = ".single-pokemon-div." + trainer.minions[0].name
@@ -179,7 +182,7 @@ $("#pokeball1").hover(function(){
 $("#pokeball2").hover(function(){
   $(this).attr("src", trainer.minions[1].image)
 }, function(){
-  $(this).attr("src", "poke-ball.jpeg")
+  $(this).attr("src", "pokeball.png")
 }).on("click", function(){
   $(pokeballDiv).addClass("hidden")
   pokemonDivName = ".single-pokemon-div." + trainer.minions[1].name
@@ -189,7 +192,7 @@ $("#pokeball2").hover(function(){
 $("#pokeball3").hover(function(){
   $(this).attr("src", trainer.minions[2].image)
 }, function(){
-  $(this).attr("src", "poke-ball.jpeg")
+  $(this).attr("src", "pokeball.png")
 }).on("click", function(){
   $(pokeballDiv).addClass("hidden")
   pokemonDivName = ".single-pokemon-div." + trainer.minions[2].name

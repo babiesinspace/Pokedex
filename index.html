@@ -2,57 +2,38 @@
 <html>
 <head>
   <title>Pokedex</title>
-  <link rel="stylesheet" type="text/css" href="main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="scss/main.css">
 </head>
 <body>
   <div id="pokedex-container">
-    <div>Top</div>
-    <button id="toggle-screen">Toggle Screen</button>
-    <div id="screen-container">
+    <div class="pokedex-top z-depth-5">
+      <div class="toggle-container">
+        <button id="toggle-screen" class="pulse"></button> 
+      </div>
+    </div>
+    <div id="screen-container" class="hidden z-depth-3">
       <div id="window-screen">
         <div id="pokeball-container">
-          <img class="thumbnail" id="pokeball1" src="poke-ball.jpeg">
-          <img class="thumbnail" id="pokeball2" src="poke-ball.jpeg">
-          <img class="thumbnail" id="pokeball3" src="poke-ball.jpeg">
+          <img class="thumbnail" id="pokeball1" src="pokeball.png">
+          <img class="thumbnail" id="pokeball2" src="pokeball.png">
+          <img class="thumbnail" id="pokeball3" src="pokeball.png">
         </div>
-<!--         <div class="single-pokemon-div (pokemon name)">
-          <div class="permanent-stats">
-            <h3 class="name"></h3>
-            <h5 class="poke-num"></h5>
-            <p class="(element name)"></p>
-            <p class="height"></p>
-            <p class="weight"></p>
-            <ul class="ability-list">
-              <li class="hidden-ability"></li>
-              <li class="ability"></li>
-            </ul>
-          </div>
-          <div class="pokemon-image-container">
-            <img class="charmander">
-          </div>
-          <div class="current-stats">
-            <ul class="stat-list">
-              <li class="stat"></li>
-              <li class="stat"></li>
-              <li class="stat"></li>
-              <li class="stat"></li>
-              <li class="stat"></li>
-              <li class="stat"></li>
-            </ul>
-          </div> -->
         </div>
         <div id="buttons">
-          <button id="left">Left Button</button>
-          <button id="middle">Middle Button</button>
-          <button id="right">Right Button</button>
+          <button id="left" class="z-depth-1"></button>
+          <button id="middle" class="z-depth-1"></button>
+          <button id="right" class="z-depth-1"></button>
         </div>
       </div>
+      <div class="pokedex-bottom z-depth-5"></div>
     </div>
   </div>
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
