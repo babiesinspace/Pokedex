@@ -1,6 +1,7 @@
 # Pokedex
 Frontend Pokedex Project using the Pokemon API
 
+Please be patient with the API, it is very slow. Pokedex center button shifts from red to grey. When the API has sent back a fully successful call, the button will pulse (it may not if the API is overloaded, though partial views are available).
 
 <img width="1436" alt="screen shot 2018-05-22 at 2 23 24 pm" src="https://user-images.githubusercontent.com/22032097/40382545-a9ff6b40-5dcc-11e8-81e8-3ba6bec5a74d.png">
 <img width="1440" alt="screen shot 2018-05-22 at 2 23 29 pm" src="https://user-images.githubusercontent.com/22032097/40382546-aa1139c4-5dcc-11e8-9762-57e2ae41d5a4.png">
